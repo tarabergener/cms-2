@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Contact } from '../contact.model';
 
@@ -25,6 +25,12 @@ export class ContactListComponent implements OnInit {
       '/assets/images/barzeer.jpg',
     ),
   ];
+
+  @Output() selectedContactEvent = new EventEmitter<Contact>();
+
+  onSelected(contact: Contact) {
+    this.selectedContactEvent.emit(contact);
+  }
 
   constructor() {}
 
