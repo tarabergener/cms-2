@@ -14,6 +14,8 @@ import { Message } from '../message.model';
   styleUrl: './message-edit.component.css',
 })
 export class MessageEditComponent {
+  currentSender: string = 'Tara Bergener';
+
   @ViewChild('subjectInput') subjectInputRef: ElementRef;
   @ViewChild('msgInput') msgInputRef: ElementRef;
   @Output() messageSent = new EventEmitter<Message>();
@@ -23,7 +25,7 @@ export class MessageEditComponent {
       Math.random().toString(),
       this.subjectInputRef.nativeElement.value,
       this.msgInputRef.nativeElement.value,
-      'Me',
+      this.currentSender,
     );
 
     this.messageSent.emit(newMessage);
