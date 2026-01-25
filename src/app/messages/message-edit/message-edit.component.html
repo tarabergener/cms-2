@@ -10,6 +10,7 @@
             class="form-control"
             size="120"
             max="120"
+            #subjectInput
           />
         </div>
 
@@ -21,13 +22,32 @@
             class="form-control"
             max="255"
             size="120"
+            #msgInput
           />
         </div>
+        <!-- <div class="col-sm-12 form-group">
+          <label for="sender">Sender</label>
+          <input
+            type="text"
+            id="sender"
+            class="form-control"
+            max="255"
+            size="120"
+          />
+        </div> -->
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button class="btn btn-success" type="submit">Send</button>
-          <button class="btn btn-danger" type="button">Clear</button>
+          <button
+            class="btn btn-success"
+            type="button"
+            (click)="onSendMessage()"
+          >
+            Send
+          </button>
+          <button class="btn btn-danger" type="button" (click)="onClear()">
+            Clear
+          </button>
         </div>
       </div>
     </form>

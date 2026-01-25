@@ -1,1 +1,14 @@
-<p>messages works!</p>
+<div class="row">
+  <div class="col-md-5">
+    <cms-message-list
+      [messages]="messages"
+      (messageSelected)="onMessageSelected($event)"
+    ></cms-message-list>
+  </div>
+
+  <div class="col-md-4">
+    <cms-message-edit
+      (messageSent)="onMessageSelected($event)"
+    ></cms-message-edit>
+  </div>
+</div>
