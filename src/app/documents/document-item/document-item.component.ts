@@ -9,4 +9,6 @@ import { Document } from '../document.model';
 })
 export class DocumentItemComponent {
   @Input() document: Document;
+
+  constructor() {}
 }
