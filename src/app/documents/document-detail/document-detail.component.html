@@ -12,15 +12,18 @@
   <div class="panel-body">
     <div class="pad-left-right">
       <div class="row">
+        <label>Name:</label>
+        <span class="label-value">{{ document.name }}</span>
+      </div>
+      <br />
+      <div class="row">
         <label>Description:</label>
-        <span class="label-value"
-          ><!-- display document description here --></span
-        >
+        <span class="label-value">{{ document.description }}</span>
       </div>
       <br />
       <div class="row">
         <label>URL:</label>
-        <span class="label-value"><!-- display document URL here --></span>
+        <span class="label-value">{{ document.url }}</span>
       </div>
     </div>
   </div>
