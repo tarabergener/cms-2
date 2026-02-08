@@ -303,4 +303,12 @@ export const MOCKCONTACTS: Contact[] = [
       },
     ],
   },
+  {
+    id: '19',
+    name: 'Tara Bergener',
+    email: 'ber24004@byui.edu',
+    phone: '302-125-4698',
+    imageUrl: '../../assets/images/bergener.jpg',
+    group: null,
+  },
 ];

@@ -8,9 +8,7 @@ import { Message } from './message.model';
   styleUrl: './messages.component.css',
 })
 export class MessagesComponent implements OnInit {
-  messages: Message[] = [
-    new Message('1', 'Tom Hanks', 'It was nice to meet you.', 'Sally'),
-  ];
+  messages: Message[] = [];
 
   constructor() {}
 
