@@ -7,8 +7,9 @@
     <div class="col-xs-12">
       <ul class="list-group">
         <cms-contact-item
-          *ngFor="let contact of contacts"
+          *ngFor="let contact of contacts; let i = index"
           [contact]="contact"
+          [index]="i"
         ></cms-contact-item>
       </ul>
     </div>

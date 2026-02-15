@@ -7,15 +7,20 @@
   <div class="row">
     <div class="col-xs-12 text-right">
       <div class="btn-group">
-        <button
+        <a
+          [routerLink]="['edit']"
           class="btn btn-primary"
           style="margin-right: 8px; border-radius: 3px"
         >
           Edit
-        </button>
-        <button class="btn btn-danger" style="border-radius: 3px">
+        </a>
+        <a
+          (click)="onDelete()"
+          class="btn btn-danger"
+          style="border-radius: 3px"
+        >
           Delete
-        </button>
+        </a>
       </div>
     </div>
   </div>
