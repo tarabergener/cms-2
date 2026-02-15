@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Document } from '../document.model';
 import { DocumentService } from '../document.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, RouterLink } from '@angular/router';
 import { WindRefService } from '../../wind-ref.service';
 
 @Component({
@@ -34,5 +34,10 @@ export class DocumentDetailComponent {
     if (this.document.url) {
       this.nativeWindow.open(this.document.url);
     }
+  }
+
+  onDelete() {
+    this.documentService.deleteDocument(this.document);
+    this.nativeWindow.history.back();
   }
 }
