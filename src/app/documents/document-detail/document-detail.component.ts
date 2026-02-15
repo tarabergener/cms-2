@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Document } from '../document.model';
+import { DocumentService } from '../document.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'cms-document-detail',
@@ -8,7 +10,18 @@ import { Document } from '../document.model';
   styleUrl: './document-detail.component.css',
 })
 export class DocumentDetailComponent {
-  @Input() document: Document;
+  id: number;
+  document: Document;
 
-  constructor() {}
+  constructor(
+    private documentService: DocumentService,
+    private route: ActivatedRoute,
+  ) {}
+
+  ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      this.id = +params['id'];
+      this.document = this.documentService.getDocumentById(this.id);
+    });
+  }
 }
