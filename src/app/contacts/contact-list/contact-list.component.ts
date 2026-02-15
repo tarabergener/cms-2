@@ -11,13 +11,9 @@ import { Contact } from '../contact.model';
 export class ContactListComponent implements OnInit {
   contacts: Contact[] = [];
 
-  constructor(private contactService: ContactService) {}
-
-  ngOnInit() {
+  constructor(private contactService: ContactService) {
     this.contacts = this.contactService.getContacts();
   }
 
-  onSelected(contact: Contact) {
-    this.contactService.contactSelectedEvent.emit(contact);
-  }
+  ngOnInit() {}
 }

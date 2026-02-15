@@ -2,14 +2,13 @@
   <div class="col-xs-10">
     <div class="col-xs-12">
       <h2>Contacts</h2>
-      <button class="btn btn-primary">New Contact</button>
+      <a [routerLink]="['new']" class="btn btn-primary">New Contact</a>
     </div>
     <div class="col-xs-12">
       <ul class="list-group">
         <cms-contact-item
           *ngFor="let contact of contacts"
           [contact]="contact"
-          (click)="onSelected(contact)"
         ></cms-contact-item>
       </ul>
     </div>

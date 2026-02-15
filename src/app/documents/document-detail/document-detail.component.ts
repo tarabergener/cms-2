@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Document } from '../document.model';
 import { DocumentService } from '../document.service';
-import { ActivatedRoute, Params, RouterLink } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { WindRefService } from '../../wind-ref.service';
 
 @Component({

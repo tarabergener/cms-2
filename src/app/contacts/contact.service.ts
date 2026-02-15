@@ -18,6 +18,10 @@ export class ContactService {
     return this.contacts.slice();
   }
 
+  getContactById(id: number) {
+    return this.contacts[id];
+  }
+
   getContact(id: string): Contact {
     for (let contact of this.contacts) {
       if (contact.id === id) {
