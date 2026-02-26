@@ -19,9 +19,7 @@ export class DocumentEditComponent implements OnInit {
     private documentService: DocumentService,
     private router: Router,
     private route: ActivatedRoute,
-  ) {
-    // Initialize properties if needed
-  }
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
