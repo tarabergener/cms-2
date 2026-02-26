@@ -47,13 +47,10 @@
             max="255"
             required
           />
-          <div>
+          <div class="row" style="min-height: 3rem">
             <small
-              class="alert alert-danger"
-              *ngIf="
-                f.submitted &&
-                (f.controls.url?.invalid || f.controls.name?.invalid)
-              "
+              class="col-sm-12 form-group alert alert-danger"
+              *ngIf="f.controls.url?.invalid || f.controls.name?.invalid"
             >
               The Document Title and Document URL are required fields.
             </small>
