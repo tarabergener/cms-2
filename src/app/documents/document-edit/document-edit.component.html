@@ -1,1 +1,76 @@
-<p>document-edit works!</p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm" id="document-edit">
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="name">Document Title:</label>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            ngModel
+            name="name"
+            size="120"
+            max="120"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="description">Document Description:</label>
+          <input
+            name="description"
+            type="text"
+            id="description"
+            class="form-control"
+            ngModel
+            name="description"
+            size="120"
+            max="255"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="url">Document URL:</label>
+          <input
+            name="url"
+            type="text"
+            id="url"
+            class="form-control"
+            ngModel
+            name="url"
+            size="150"
+            max="255"
+            required
+          />
+          <div>
+            <small
+              class="alert alert-danger"
+              *ngIf="
+                f.submitted &&
+                (f.controls.url?.invalid || f.controls.name?.invalid)
+              "
+            >
+              The Document Title and Document URL are required fields.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 btn-toolbar">
+          <button class="btn btn-success" type="submit" [disabled]="!f.valid">
+            Save
+          </button>
+          <button class="btn btn-primary" type="button" (click)="onCancel()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
