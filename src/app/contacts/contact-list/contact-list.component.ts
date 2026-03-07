@@ -15,18 +15,22 @@ export class ContactListComponent implements OnInit {
 
   subscription: Subscription;
 
-  constructor(private contactService: ContactService) {
-    this.contacts = this.contactService.getContacts();
-  }
+  constructor(private contactService: ContactService) {}
 
   search(value: string) {
     this.term = value.toLowerCase();
   }
 
   ngOnInit() {
-    this.subscription = this.contactService.contactChangedEvent.subscribe((contacts: Contact[]) => {
+    this.contactService.getContacts().subscribe((contacts) => {
       this.contacts = contacts;
     });
+
+    this.contactService.contactChangedEvent.subscribe(
+      (contacts: Contact[]) => {
+        this.contacts = contacts;
+      },
+    );
     this.contactService.contactListChangedEvent.subscribe(
       (contactList: Contact[]) => {
         this.contacts = contactList;
