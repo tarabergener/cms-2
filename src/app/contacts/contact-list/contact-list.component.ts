@@ -11,15 +11,20 @@ import { Subscription } from 'rxjs';
 })
 export class ContactListComponent implements OnInit {
   contacts: Contact[] = [];
+  term: string;
 
-  subcription: Subscription;
+  subscription: Subscription;
 
   constructor(private contactService: ContactService) {
     this.contacts = this.contactService.getContacts();
   }
 
+  search(value: string) {
+    this.term = value.toLowerCase();
+  }
+
   ngOnInit() {
-    this.contactService.contactChangedEvent.subscribe((contacts: Contact[]) => {
+    this.subscription = this.contactService.contactChangedEvent.subscribe((contacts: Contact[]) => {
       this.contacts = contacts;
     });
     this.contactService.contactListChangedEvent.subscribe(
@@ -31,6 +36,6 @@ export class ContactListComponent implements OnInit {
 
   ngOnDestroy() {
     // Unsubscribe from the event to prevent memory leaks
-    this.subcription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }
