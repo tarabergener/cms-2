@@ -83,8 +83,87 @@ export class MessageService {
   }
 
   addMessage(message: Message) {
-    this.messages.push(message);
-    this.messageChangedEvent.emit(this.messages.slice());
-    this.storeMessages();
+    if (!message) {
+      return;
+    }
+
+    // make sure id of the new Message is empty
+    message.id = '';
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    // add to database
+    this.http
+      .post<{
+        note: string;
+        message: Message;
+      }>('http://localhost:3000/messages', message, { headers: headers })
+      .subscribe((responseData) => {
+        // add new message to messages
+        this.messages.push(responseData.message);
+        this.sortAndSend();
+      });
+  }
+
+  updateMessage(originalMessage: Message, newMessage: Message) {
+    if (!originalMessage || !newMessage) {
+      return;
+    }
+
+    const pos = this.messages.findIndex((d) => d.id === originalMessage.id);
+
+    if (pos < 0) {
+      return;
+    }
+
+    // set the id of the new Message to the id of the old Message
+    newMessage.id = originalMessage.id;
+    // newMessage._id = originalMessage._id;
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    // update database
+    this.http
+      .put(
+        'http://localhost:3000/messages/' + originalMessage.id,
+        newMessage,
+        { headers: headers },
+      )
+      .subscribe((response: Response) => {
+        this.messages[pos] = newMessage;
+        this.sortAndSend();
+      });
+  }
+
+  deleteMessage(message: Message) {
+    if (!message) {
+      return;
+    }
+
+    const pos = this.messages.findIndex((d) => d.id === message.id);
+
+    if (pos < 0) {
+      return;
+    }
+
+    // delete from database
+    this.http
+      .delete('http://localhost:3000/messages/' + message.id)
+      .subscribe((response: Response) => {
+        this.messages.splice(pos, 1);
+        this.sortAndSend();
+      });
+  }
+  sortAndSend() {
+    this.messages.sort((a, b) => {
+      if (a.subject < b.subject) {
+        return -1;
+      }
+      if (a.subject > b.subject) {
+        return 1;
+      }
+      return 0;
+    });
+    // this.messageListChangedEvent.next(this.messages.slice());
   }
 }
