@@ -21,6 +21,8 @@
     "bootstrap": "^3.4.1",
     "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
+    "mongoose": "^8.23.0",
+    "mongoose-unique-validator": "^5.0.2",
     "morgan": "^1.10.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
