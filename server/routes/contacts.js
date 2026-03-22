@@ -5,8 +5,8 @@ const Contact = require("../models/contacts");
 
 router.get("/", (req, res, next) => {
   Contact.find()
-  .populate('group')
-    .then(contacts => {
+    .populate("group")
+    .then((contacts) => {
       res.status(200).json({
         message: "Contacts retrieved successfully!",
         contacts: contacts,
@@ -21,13 +21,14 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  const maxContactsId = sequenceGenerator.nextId("contacts");
+  const maxContactId = sequenceGenerator.nextId("contacts");
 
   const contact = new Contact({
-    id: maxContactsId,
+    id: maxContactId,
     name: req.body.name,
-    description: req.body.description,
-    url: req.body.url,
+    email: req.body.email,
+    phone: req.body.phone,
+    imageUrl: req.body.imageUrl,
   });
 
   contact
@@ -50,8 +51,9 @@ router.put("/", (req, res, next) => {
   Contact.findOne({ id: req.params.id })
     .then((contact) => {
       contact.name = req.body.name;
-      contact.description = req.body.description;
-      contact.url = req.body.url;
+      contact.email = req.body.email;
+      contact.phone = req.body.phone;
+      contact.imageUrl = req.body.imageUrl;
 
       Contact.updateOne({ id: req.params.id }, contact)
         .then((result) => {

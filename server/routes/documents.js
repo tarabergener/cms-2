@@ -6,10 +6,7 @@ const Document = require("../models/documents");
 router.get("/", (req, res, next) => {
   Document.find()
     .then((documents) => {
-      res.status(200).json({
-        message: "Documents retrieved successfully!",
-        documents: documents,
-      });
+      res.status(200).json(documents);
     })
     .catch((error) => {
       res.status(500).json({
@@ -20,10 +17,10 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  const maxDocumentsId = sequenceGenerator.nextId("documents");
+  const maxDocumentId = sequenceGenerator.nextId("documents");
 
   const document = new Document({
-    id: maxDocumentsId,
+    id: maxDocumentId,
     name: req.body.name,
     description: req.body.description,
     url: req.body.url,

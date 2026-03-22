@@ -20,13 +20,13 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  const maxMessagesId = sequenceGenerator.nextId("messages");
+  const maxMessageId = sequenceGenerator.nextId("messages");
 
   const message = new Message({
-    id: maxMessagesId,
-    name: req.body.name,
-    description: req.body.description,
-    url: req.body.url,
+    id: maxMessageId,
+    subject: req.body.subject,
+    msgText: req.body.msgText,
+    sender: req.body.sender,
   });
 
   message
