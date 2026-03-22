@@ -22,9 +22,7 @@ export class ContactService {
   }
 
   getContacts() {
-    return this.http.get<Contact[]>(
-      'https://tdbcms-b25b3-default-rtdb.firebaseio.com/contacts.json',
-    );
+    return this.http.get<Contact[]>('http://localhost:3000/contacts');
   }
 
   getContactById(id: number) {

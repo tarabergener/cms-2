@@ -16,9 +16,7 @@ export class MessageService {
   }
 
   getMessages() {
-    return this.http.get<Message[]>(
-      'https://tdbcms-b25b3-default-rtdb.firebaseio.com/messages.json',
-    );
+    return this.http.get<Message[]>('http://localhost:3000/messages');
   }
 
   getMessage(id: string): Message {
@@ -31,28 +29,24 @@ export class MessageService {
   }
 
   getMessagesFromServer() {
-    this.http
-      .get<
-        Message[]
-      >('https://tdbcms-b25b3-default-rtdb.firebaseio.com/messages.json')
-      .subscribe(
-        (messages: Message[]) => {
-          this.messages = messages;
-          this.maxMessageId = this.getMaxId();
-          this.messages.sort((a, b) => {
-            if (a.sender < b.sender) {
-              return -1;
-            }
-            if (a.sender > b.sender) {
-              return 1;
-            }
-            return 0;
-          });
-        },
-        (error: any) => {
-          console.log(error);
-        },
-      );
+    this.http.get<Message[]>('http://localhost:3000/messages').subscribe(
+      (messages: Message[]) => {
+        this.messages = messages;
+        this.maxMessageId = this.getMaxId();
+        this.messages.sort((a, b) => {
+          if (a.sender < b.sender) {
+            return -1;
+          }
+          if (a.sender > b.sender) {
+            return 1;
+          }
+          return 0;
+        });
+      },
+      (error: any) => {
+        console.log(error);
+      },
+    );
   }
 
   getMaxId(): number {
@@ -124,11 +118,9 @@ export class MessageService {
 
     // update database
     this.http
-      .put(
-        'http://localhost:3000/messages/' + originalMessage.id,
-        newMessage,
-        { headers: headers },
-      )
+      .put('http://localhost:3000/messages/' + originalMessage.id, newMessage, {
+        headers: headers,
+      })
       .subscribe((response: Response) => {
         this.messages[pos] = newMessage;
         this.sortAndSend();
